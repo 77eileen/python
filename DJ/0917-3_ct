@@ -1,0 +1,14 @@
+# def solution(my_string, overwrite_string, s):
+#     my_string[int(s):len(overwrite_string)] = overwrite_string
+#     return ('my_string[:s]+overwrite_string')
+
+# s1 = solution("He11oWor1d", "lloWorl", 2)
+# print(s1)
+
+def solution(str1, str2):
+    for s1 in str1:
+      for s2 in str2:
+        return (s1+s2)*len(str1)
+      
+sol1 = solution ("aaaaa", "bbbbb")
+print(sol1)
