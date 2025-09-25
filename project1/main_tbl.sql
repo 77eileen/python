@@ -1,0 +1,1 @@
+SELECT * FROM project1.main_tbl;main_tbl
