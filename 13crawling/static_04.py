@@ -13,8 +13,8 @@ def get_connection():
         database='shopinfo'
     )
 import crawlingcoffe
-# terminal에서 pip install tqdm
-import tqdm
+# terminal에서 pip install tqdm 
+import tqdm   #(tqdm 진행상황을 보여줌)
 for page_num in tqdm.tqdm(range(1,47)):
     datas = crawlingcoffe.get_data(page_num)
     with get_connection() as conn:
@@ -32,3 +32,8 @@ for page_num in tqdm.tqdm(range(1,47)):
                     conn.commit()
                 else:
                     conn.commit()
+
+
+
+#  ===>> shop_base2_tbl 이 있어야함. 
+# create table shop_base2_tbl like shop_base_tbl;

@@ -12,11 +12,11 @@ def get_connection():
         host = os.getenv('DB_HOST'),
         user = os.getenv('DB_USER'),
         password = os.getenv('DB_PASSWORD'),
-        database='shopinfo'
+        database='shopinfo'     #shopinfo 관련 sql 먼저 만들고 나서 실행하기 / shopinfo에서 addr varchar(500)으로 변경하기
     )
 
 import crawlingcoffe
-for page_num in range(1,47):
+for page_num in range(1,47):     #할리스 매장 전체 페이지수를 입력 1에서 47페이지까지!
     with get_connection() as conn:
         with conn.cursor() as cur:
             sql = '''
