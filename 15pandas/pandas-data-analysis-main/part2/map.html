@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c09a9e09813617985c6f3185f7bdc8a9 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_c09a9e09813617985c6f3185f7bdc8a9" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c09a9e09813617985c6f3185f7bdc8a9 = L.map(
+                "map_c09a9e09813617985c6f3185f7bdc8a9",
+                {
+                    center: [35.573927541891, 126.845512256934],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_2c897591b9c18b049579466e43737f78 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_2c897591b9c18b049579466e43737f78.addTo(map_c09a9e09813617985c6f3185f7bdc8a9);
+        
+    
+            var marker_84a8101595d9c6b06ad59d6bd98d0fa0 = L.marker(
+                [35.573927541891, 126.845512256934],
+                {
+}
+            ).addTo(map_c09a9e09813617985c6f3185f7bdc8a9);
+        
+    
+        var popup_f9c8b8279f93e1ba9e460d62e99b2f8f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_155908ec32542ee16b592f46b0cdbc7d = $(`<div id="html_155908ec32542ee16b592f46b0cdbc7d" style="width: 100.0%; height: 100.0%;">우리들정형외과의원</div>`)[0];
+                popup_f9c8b8279f93e1ba9e460d62e99b2f8f.setContent(html_155908ec32542ee16b592f46b0cdbc7d);
+            
+        
+
+        marker_84a8101595d9c6b06ad59d6bd98d0fa0.bindPopup(popup_f9c8b8279f93e1ba9e460d62e99b2f8f)
+        ;
+
+        
+    
+    
+            marker_84a8101595d9c6b06ad59d6bd98d0fa0.bindTooltip(
+                `<div>
+                     병원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c7ce4f03a4fad916774e331311069631 = L.marker(
+                [36.3126899557356, 127.380308327292],
+                {
+}
+            ).addTo(map_c09a9e09813617985c6f3185f7bdc8a9);
+        
+    
+        var popup_42699931af118cf3edab38b535cc507e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8911703ec56801341a47e6a046fb6a2b = $(`<div id="html_8911703ec56801341a47e6a046fb6a2b" style="width: 100.0%; height: 100.0%;">김영유소아과의원</div>`)[0];
+                popup_42699931af118cf3edab38b535cc507e.setContent(html_8911703ec56801341a47e6a046fb6a2b);
+            
+        
+
+        marker_c7ce4f03a4fad916774e331311069631.bindPopup(popup_42699931af118cf3edab38b535cc507e)
+        ;
+
+        
+    
+    
+            marker_c7ce4f03a4fad916774e331311069631.bindTooltip(
+                `<div>
+                     병원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

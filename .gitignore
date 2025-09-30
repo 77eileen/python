@@ -1,0 +1,15 @@
+#가상환경
+.vscode
+#환경변수
+.env
+#파이썬
+*.splite3
+*.db
+*.__pycache__
+
+# 큰 파일
+python.zip
+*.zip
+# 100MB 이상의 파일들
+streamlit_prj/
+15pandas/pandas-data-analysis-main/part4/credits.csv

@@ -1,0 +1,4 @@
+SELECT * FROM project1.vehicle_data;
+
+ALTER TABLE project1.vehicle_data
+ADD COLUMN id INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
