@@ -7,10 +7,11 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-import pymysql
 import time
+import pymysql 
 from dotenv import load_dotenv
 import os
+
 
 # =========================================
 # 2️⃣ Selenium 크롤링 설정
@@ -41,23 +42,16 @@ while page_num <= max_pages:
 
     for i, faq in enumerate(faq_items, start=1):
         try:
-            dt_element = faq.find_element(By.TAG_NAME, "dt")
-            question_button = dt_element.find_element(By.TAG_NAME, "button")
-
-            # dt 요소의 전체 텍스트에서 버튼의 텍스트를 빼서 순수 질문만 추출
-            full_dt_text = dt_element.get_attribute('innerText')
-            button_text = question_button.get_attribute('innerText')
-            question_text = full_dt_text.replace(button_text, '').strip()
-
+            question_button = faq.find_element(By.CSS_SELECTOR, "dt button")
             # JS로 클릭 (다른 요소에 가려져도 클릭 가능)
             driver.execute_script("arguments[0].click();", question_button)
             time.sleep(0.3)  # 답변 로딩 대기
             answer_text = faq.find_element(By.CSS_SELECTOR, "dd").text
-            faq_data.append((question_text, answer_text))
+            faq_data.append((question_button.text, answer_text))
             
             # 중간 확인용 출력
-            # print(f"{i}번 질문: {question_button.text}")
-            # print(f"답변: {answer_text[:50]}...")
+            print(f"{i}번 질문: {question_button.text}")
+            print(f"답변: {answer_text[:50]}...")
         except Exception as e:
             print(f"{i}번 FAQ 처리 중 오류:", e)
 
@@ -73,39 +67,32 @@ while page_num <= max_pages:
         print("마지막 페이지 도달 또는 다음 버튼 없음")
         break
 
+driver.quit()
 print("총 FAQ 개수:", len(faq_data))
 
-
 # =========================================
-# 4️⃣ MySQL 저장 (디버깅 강화 버전)
+# 4️⃣ MySQL 저장
 # =========================================
 
 #.env로드
 load_dotenv()
 
-
-conn = None
-cur = None
 try:
-    print("\n=== MySQL 저장 시작 ===", flush=True)
-    
-    print("1. MySQL 서버에 연결 시도...", flush=True)
-    conn = pymysql.connect(
-        host=os.getenv('DB_HOST'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'), # 본인 비밀번호
-        connect_timeout=10,
-        charset='utf8mb4'
-            )
+    conn=pymysql.connect(
+    host=os.getenv('DB_HOST'),
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'))
+
+    print('접속성공')
+
     cur = conn.cursor()
-    print("2. MySQL 연결 성공.", flush=True)
     
+    # DB 생성
     cur.execute("CREATE DATABASE IF NOT EXISTS 0dj_test")
-    print("3. 데이터베이스 생성/확인 완료.", flush=True)
+    print("데이터베이스 '0dj_test' 생성 완료 또는 이미 존재함")
+    cur.execute("USE 1dj_test")
     
-    cur.execute("USE 0dj_test")
-    print("4. '0dj_test' 데이터베이스 사용.", flush=True)
-    
+    # 테이블 생성
     cur.execute("""
     CREATE TABLE IF NOT EXISTS faq (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -113,37 +100,39 @@ try:
         answer TEXT
     )
     """)
-    print("5. 'faq' 테이블 생성/확인 완료.", flush=True)
+    print("테이블 'faq' 생성 완료 또는 이미 존재함")
 
-    if faq_data:
-        print("6. 기존 데이터를 삭제합니다 (TRUNCATE TABLE).", flush=True)
-        cur.execute("TRUNCATE TABLE faq")
-        print(f"7. {len(faq_data)}개의 새 FAQ 데이터 삽입을 시작합니다...", flush=True)
-        cur.executemany("INSERT INTO faq (question, answer) VALUES (%s, %s)", faq_data)
-        conn.commit()
-        print("8. 데이터 삽입 및 커밋 완료.", flush=True)
-    else:
-        print("6. 삽입할 FAQ 데이터가 없습니다.", flush=True)
+    # FAQ 데이터 삽입
+    for q, a in faq_data:
+        cur.execute("INSERT INTO faq (question, answer) VALUES (%s, %s)", (q, a))
     
-    print("=== MySQL 저장 성공 ===", flush=True)
+    conn.commit()
+    print("FAQ 데이터 MySQL에 저장 완료")
     
 except Exception as e:
-    print("!!! DB 오류 발생 !!!", flush=True)
-    print(e, flush=True)
+    print("DB 오류:", e)
 
 finally:
-    print("\n=== 스크립트 정리 시작 ===", flush=True)
-    if cur:
-        cur.close()
-        print("커서를 닫았습니다.", flush=True)
-    if conn and conn.open:
-        conn.close()
-        print("연결을 닫았습니다.", flush=True)
+    cur.close()
+    conn.close()
 
-    if 'driver' in locals() and driver:
-        driver.quit()
-        print("브라우저를 닫았습니다.", flush=True)
+
+# =========================================
+# 5️⃣ Streamlit 화면에 출력
+# =========================================
+# MySQL에서 데이터 읽어오기
+try:
+    conn=pymysql.connect(
+        host=os.getenv('DB_HOST'),
+        user=os.getenv('DB_USER'),
+        password=os.getenv('DB_PASSWORD')
+        database="1dj_test"
+    )
+    df = pd.read_sql("SELECT * FROM faq", conn)
+    conn.close()
     
-    print("\n스크립트 실행이 완료되었습니다. Enter 키를 누르면 종료됩니다.")
-    input()
-
+    # Streamlit 화면 구성
+    st.title("현대자동차 FAQ")   # 제목 표시
+    st.dataframe(df)            # 표 형태로 FAQ 보여주기
+except Exception as e:
+    st.write("Streamlit DB 로딩 오류:", e)

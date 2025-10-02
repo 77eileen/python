@@ -25,7 +25,7 @@ print('접속성공')
 # 커서 객체의 callproc('AddCodeWithTransaction', [ , , , ])
 with conn as conn:
     with conn.cursor() as cursor:
-        cursor.callproc('AddCodeWithTransaction', ['PROD', 'P1001', '소금빵', 0, 'Y'])
+        cursor.callproc('AddCodeWithTransaction', ['PROD', 'P1002', '크루아상', 0, 'Y'])
         for row in cursor.fetchall():
             print(row)
     conn.commit()

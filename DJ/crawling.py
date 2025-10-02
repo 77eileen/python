@@ -7,10 +7,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
+import pymysql
 import mysql.connector
 import time
 import pandas as pd
 import streamlit as st
+from dotenv import load_dotenv
+import os
 
 # =========================================
 # 2️⃣ Selenium 크롤링 설정
@@ -73,10 +76,10 @@ print("총 FAQ 개수:", len(faq_data))
 # =========================================
 try:
     # DB 연결 (직접 문자열로 지정)
-    conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="root1234"  # 본인 MySQL 비밀번호
+    conn = pymysql.connect(
+    host=os.getenv('DB_HOST'),
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),  # 본인 MySQL 비밀번호
     )
     cur = conn.cursor()
 except Exception as e:
@@ -113,7 +116,7 @@ print("MySQL 저장 완료!")
 # =========================================
 # MySQL에서 데이터 읽어오기
 try:
-    conn = mysql.connector.connect(
+    conn = mysql.connect(
         host="localhost",
         user="root",
         password="root1234",
