@@ -12,4 +12,6 @@ python.zip
 *.zip
 # 100MB 이상의 파일들
 streamlit_prj/
-15pandas/pandas-data-analysis-main/part4/credits.csv
+15pandas/pandas-data-analysis-main/part7/data/San-Francisco-Crime .csv
+15pandas/pandas-data-analysis-main/part7/extracted_files/open/external_open/countrywide_accident.csv
+SQL_database/load_salaries.dump
