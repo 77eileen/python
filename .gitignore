@@ -20,3 +20,5 @@ SQL_database/load_salaries.dump
 
 #데이터 파일
 16machin-learning/data/movie_aclImdb/
+**/movie_aclImdb/
+17deep-learning/data/FashionMNIST/
