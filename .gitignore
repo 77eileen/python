@@ -22,3 +22,16 @@ SQL_database/load_salaries.dump
 16machin-learning/data/movie_aclImdb/
 **/movie_aclImdb/
 17deep-learning/data/FashionMNIST/
+17deep-learning/data/
+17deep-learning/data/
+17deep-learning/cifar-10-batches-py/
+17deep-learning/cifar-10-python.tar.gz
+17deep-learning/cifar-10-batches-py/batches.meta
+17deep-learning/cifar-10-batches-py/data_batch_2
+17deep-learning/cifar-10-batches-py/data_batch_1
+17deep-learning/cifar-10-batches-py/data_batch_3
+17deep-learning/cifar-10-batches-py/data_batch_4
+17deep-learning/cifar-10-batches-py/data_batch_5
+17deep-learning/cifar-10-batches-py/readme.html
+17deep-learning/cifar-10-batches-py/test_batch
+17deep-learning/data/horse-or-human/
