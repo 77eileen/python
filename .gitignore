@@ -35,3 +35,7 @@ SQL_database/load_salaries.dump
 17deep-learning/cifar-10-batches-py/readme.html
 17deep-learning/cifar-10-batches-py/test_batch
 17deep-learning/data/horse-or-human/
+17deep-learning/cifar.pth
+17deep-learning/hm.pth
+17deep-learning/bostonRegression.pth
+17deep-learning/resnet.pth
