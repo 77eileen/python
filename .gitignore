@@ -39,3 +39,6 @@ SQL_database/load_salaries.dump
 17deep-learning/hm.pth
 17deep-learning/bostonRegression.pth
 17deep-learning/resnet.pth
+17deep-learning/rnn_TSLA.pth
+17deep-learning/rnn.pth
+17deep-learning/*.pth
