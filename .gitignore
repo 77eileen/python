@@ -42,3 +42,5 @@ SQL_database/load_salaries.dump
 17deep-learning/rnn_TSLA.pth
 17deep-learning/rnn.pth
 17deep-learning/*.pth
+project2/data/bank_churn_data.csv
+project2/data/netflix_customer_churn.csv
