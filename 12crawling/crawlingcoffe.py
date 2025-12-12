@@ -32,5 +32,5 @@ def get_data(page_num):
                 row.select('td')[5].text.strip()
             )
         )    
-    # print(store_lists)    
-    return store_lists
+    print(store_lists)    
+    # return store_lists
